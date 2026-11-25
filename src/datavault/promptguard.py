@@ -94,8 +94,8 @@ class Verdict:
     def summary(self) -> str:
         parts = []
         if self.injection:
-            parts.append(f"injection {self.injection['level']}: "
-                         + ", ".join(self.injection["rules"]))
+            label = "injection" if self.injection["level"] == "injection" else "possible injection"
+            parts.append(f"{label}: " + ", ".join(self.injection["rules"]))
         if self.regex:
             parts.append("DLP: " + ", ".join(f"{t} x{n}" for t, n in sorted(self.regex.items())))
         for case, c in self.cases.items():
