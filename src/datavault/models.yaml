@@ -1,0 +1,34 @@
+# Model routing for quarantined workers.
+# Providers must be loopback endpoints: data never leaves this machine.
+# Cloud models (Ollama *-cloud / :cloud) are rejected even though they sit behind loopback.
+# Route entries are "<provider>:<model id>", tried in order (fallback on error / invalid JSON).
+
+providers:
+  lmstudio:
+    base_url: http://127.0.0.1:1234/v1
+  ollama:
+    base_url: http://127.0.0.1:11434/v1
+    kind: ollama   # enables cloud-model detection via /api/tags
+
+defaults:
+  temperature: 0
+  seed: 42
+  timeout_s: 300
+
+routes:
+  ner:
+    - lmstudio:qwen/qwen3-4b-2507
+    - lmstudio:liquid/lfm2.5-1.2b
+  extract:
+    - lmstudio:liquid/lfm2-24b-a2b
+    - ollama:qwen2.5:7b
+  classify:
+    - lmstudio:qwen/qwen3-4b-2507
+    - lmstudio:microsoft/phi-4
+  # no fallback: a second 16 GB model next to the 27B runs Metal out of memory on 24 GB
+  heavy:
+    - lmstudio:qwen/qwen3.8-27b
+
+embeddings:
+  - lmstudio:text-embedding-bge-m3
+  - ollama:nomic-embed-text:latest

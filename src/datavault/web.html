@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataVault</title>
+<style>
+:root { --bg:#f6f7f9; --fg:#14213d; --mute:#6a7179; --line:#d9dee7; --card:#fff;
+        --accent:#1f5fa8; --warn:#c8651b; --bad:#a33a2b; --ok:#2e7d4f; --handle:#e9eef6; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#14213d; --fg:#f4f6fa; --mute:#8fa3c0; --line:#2b3d63; --card:#1b2b4d;
+          --accent:#7fb0ff; --handle:#243a66; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg);
+       font: 15px/1.45 -apple-system, "IBM Plex Sans", Arial, sans-serif; }
+header { padding:16px 24px; border-bottom:1px solid var(--line); display:flex; gap:24px;
+         align-items:baseline; flex-wrap:wrap; }
+header h1 { font-size:20px; margin:0; }
+header .mute { color:var(--mute); font-size:13px; }
+main { display:grid; grid-template-columns: 1fr 1.4fr; gap:16px; padding:16px 24px; }
+@media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+section { background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:14px 16px; min-height:120px; }
+h2 { font-size:15px; margin:0 0 10px; color:var(--mute); text-transform:uppercase;
+     letter-spacing:1px; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; }
+th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line);
+         vertical-align:top; }
+th { color:var(--mute); font-weight:600; }
+tr.row { cursor:pointer; }
+tr.row:hover { background:var(--handle); }
+.tag { display:inline-block; padding:1px 7px; border-radius:999px; font-size:12px;
+       border:1px solid var(--line); margin-right:4px; }
+.tag.block { color:var(--bad); border-color:var(--bad); }
+.tag.warn { color:var(--warn); border-color:var(--warn); }
+.tag.ok { color:var(--ok); border-color:var(--ok); }
+pre { white-space:pre-wrap; word-break:break-word; background:var(--bg); padding:10px;
+      border-radius:8px; font: 12.5px/1.45 "JetBrains Mono", Menlo, monospace; max-height:60vh;
+      overflow:auto; }
+.h { background:var(--handle); border-radius:4px; padding:0 3px; color:var(--accent); }
+.r { color:var(--bad); font-weight:600; }
+.w { color:var(--warn); font-weight:600; }
+.cards { display:flex; gap:10px; flex-wrap:wrap; }
+.card { border:1px solid var(--line); border-radius:10px; padding:10px 12px; min-width:180px; }
+.card b { display:block; font-size:16px; }
+.card small { color:var(--mute); }
+#detail h3 { margin:0 0 6px; font-size:14px; }
+.toolbar { display:flex; gap:10px; align-items:center; margin-bottom:8px; }
+select, button { font:inherit; padding:4px 8px; border-radius:8px; border:1px solid var(--line);
+                 background:var(--card); color:var(--fg); }
+</style>
+</head>
+<body>
+<header>
+  <h1>DataVault</h1>
+  <span class="mute" id="meta">loading</span>
+  <span class="mute">обновление каждые 5 с; показано только то, что видел агент</span>
+</header>
+<main>
+  <div>
+    <section>
+      <h2>Дела</h2>
+      <div class="cards" id="cases"></div>
+    </section>
+    <section style="margin-top:16px">
+      <h2>Лента</h2>
+      <div class="toolbar">
+        <select id="caseSel"><option value="">все дела</option></select>
+        <select id="kindSel">
+          <option value="">все события</option>
+          <option value="call">вызовы инструментов</option>
+          <option value="prompt">prompt guard</option>
+        </select>
+        <button id="pause">пауза</button>
+      </div>
+      <table>
+        <thead><tr><th>время</th><th>дело</th><th>что</th><th>итог</th></tr></thead>
+        <tbody id="events"></tbody>
+      </table>
+    </section>
+  </div>
+  <section id="detail">
+    <h2>Детали</h2>
+    <div id="detailBody" class="mute">выбери строку в ленте</div>
+  </section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+let paused = false, lastKey = null;
+$('#pause').onclick = () => { paused = !paused; $('#pause').textContent = paused ? 'продолжить' : 'пауза'; };
+const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const hl = s => esc(s)
+  .replace(/\[\[DV:WARN:[^\]]*\]\]/g, m => `<span class="w">${m}</span>`)
+  .replace(/\[\[REDACTED\]\]|\[[A-Z][A-Z_]*(?:_\d+)?\]|\[withheld\]/g, m => `<span class="r">${m}</span>`)
+  .replace(/\[\[DV:[A-Z]+:[a-z2-7]{6}\]\]/g, m => `<span class="h">${m}</span>`);
+function pretty(s) { try { return JSON.stringify(JSON.parse(s), null, 1); } catch (e) { return s; } }
+
+async function loadOverview() {
+  const d = await (await fetch('/api/overview')).json();
+  $('#meta').textContent = `v${d.version} · ${d.home}`;
+  $('#cases').innerHTML = d.cases.map(c => {
+    const h = c.handles ? Object.values(c.handles).reduce((a, b) => a + b, 0) : 0;
+    const inj = c.injection_chunks ? Object.entries(c.injection_chunks).map(([k, v]) => `${k} ${v}`).join(', ') : '';
+    return `<div class="card"><b>${esc(c.case)}</b><small>${c.sources} источников · ${c.chunks ?? 0} чанков · ${h} handles · ${c.calls ?? 0} вызовов</small>` +
+      (inj ? `<br><span class="tag warn">injection: ${esc(inj)}</span>` : '') +
+      (c.locked ? `<br><span class="tag warn">идёт ингест, хранилище занято</span>` : '') + `</div>`;
+  }).join('');
+  const sel = $('#caseSel');
+  if (sel.options.length === 1) d.cases.forEach(c => sel.add(new Option(c.case, c.case)));
+}
+
+function summary(e) {
+  if (e.kind === 'prompt') {
+    const cls = e.decision === 'block' ? 'block' : (e.decision === 'warn' ? 'warn' : 'ok');
+    return `<span class="tag ${cls}">${esc(e.decision)}</span>${esc(e.summary || '')}`;
+  }
+  const parts = [`${e.out_chars} симв.`];
+  if (e.handles) parts.push(`${e.handles} handles`);
+  if (e.redacted) parts.push(`<span class="r">${e.redacted} REDACTED</span>`);
+  if (e.redactions) parts.push(`${e.redactions} замен guard`);
+  if (e.warnings) parts.push(`<span class="w">${e.warnings} WARN</span>`);
+  return parts.join(' · ');
+}
+
+async function loadEvents() {
+  if (paused) return;
+  const c = $('#caseSel').value, k = $('#kindSel').value;
+  const d = await (await fetch('/api/events?limit=300' + (c ? '&case=' + encodeURIComponent(c) : ''))).json();
+  const rows = d.filter(e => !k || e.kind === k);
+  const key = rows.length ? rows[0].ts + rows[0].kind + rows[0].id : '';
+  if (key === lastKey) return;
+  lastKey = key;
+  $('#events').innerHTML = rows.map(e => {
+    const what = e.kind === 'prompt' ? 'prompt guard' : `<b>${esc(e.tool)}</b> <span class="mute">${esc((e.args || '').slice(0, 90))}</span>`;
+    return `<tr class="row" data-kind="${e.kind}" data-case="${esc(e.case)}" data-id="${e.id}"><td>${esc((e.ts || '').replace('T', ' '))}</td><td>${esc(e.case)}</td><td>${what}</td><td>${summary(e)}</td></tr>`;
+  }).join('');
+  document.querySelectorAll('tr.row').forEach(tr => tr.onclick = () => showDetail(tr.dataset, rows));
+}
+
+async function showDetail(ds, rows) {
+  if (ds.kind === 'prompt') {
+    const e = rows.find(r => r.kind === 'prompt' && String(r.id) === ds.id);
+    const names = {secrets: 'Секреты', sensitive: 'Чувствительные данные', case_values: 'Значения дел', injection: 'Инъекции'};
+    const verdicts = e.verdicts ? `<table><thead><tr><th>защита</th><th>вердикт</th></tr></thead><tbody>` +
+      Object.entries(e.verdicts).map(([k, v]) => `<tr><td>${names[k] || esc(k)}</td><td><span class="tag ${v === 'ok' ? 'ok' : v}">${esc(v)}</span></td></tr>`).join('') +
+      `</tbody></table>` : '';
+    $('#detailBody').innerHTML = `<h3>prompt guard · ${esc(e.ts)} · ${esc(e.decision)}</h3>${verdicts}<p>${esc(e.summary || '')}</p>` +
+      (e.masked ? `<h3>копия, которую можно вставить</h3><pre>${hl(e.masked)}</pre>` : '<p class="mute">промпт ушёл как есть</p>');
+    return;
+  }
+  const e = await (await fetch(`/api/event?case=${encodeURIComponent(ds.case)}&id=${ds.id}`)).json();
+  $('#detailBody').innerHTML = `<h3>${esc(e.tool)} · ${esc(e.case)} · ${esc(e.ts)}</h3>` +
+    `<h3>Что спросил агент</h3><pre>${hl(pretty(e.args))}</pre>` +
+    `<h3>Что получил агент (${e.out_chars} симв., ${e.redactions} замен guard)</h3>` +
+    (e.out ? `<pre>${hl(pretty(e.out))}</pre>` : '<p class="mute">ответ не сохранён (старая запись)</p>');
+}
+
+loadOverview(); loadEvents();
+setInterval(loadEvents, 5000); setInterval(loadOverview, 30000);
+$('#caseSel').onchange = $('#kindSel').onchange = () => { lastKey = null; loadEvents(); };
+</script>
+</body>
+</html>

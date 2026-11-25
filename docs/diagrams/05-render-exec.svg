@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1308" viewBox="0 0 1180 1308" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<filter id="sh" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40" y="58" font-size="22" font-weight="700" fill="#111827">P3. Render и exec</text>
+<text x="40" y="82" font-size="13.5" fill="#6B7280">Реальные имена появляются только в файлах out/ на этом Mac</text>
+<rect x="30" y="228" width="1120" height="30" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="30" y="574" width="1120" height="30" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="6 4"/>
+<rect x="30" y="854" width="1120" height="30" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M 130.0 202.0 L 130.0 1268.0" fill="none" stroke="#C3CAD4" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<path d="M 360.0 202.0 L 360.0 1268.0" fill="none" stroke="#C3CAD4" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<path d="M 590.0 202.0 L 590.0 1268.0" fill="none" stroke="#C3CAD4" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<path d="M 820.0 202.0 L 820.0 1268.0" fill="none" stroke="#C3CAD4" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<path d="M 1050.0 202.0 L 1050.0 1268.0" fill="none" stroke="#C3CAD4" stroke-width="1.5" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<path d="M 130.0 322.0 L 360.0 322.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="147.8" y="283.0" width="194.3" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="297.0" font-size="11.5" fill="#374151" text-anchor="middle">1. render(report.md, текст с</text>
+<text x="245.0" y="313.0" font-size="11.5" fill="#374151" text-anchor="middle">[[DV:HOST:u4pcsk]] ...)</text>
+<path d="M 360.0 388.0 L 590.0 388.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="381.1" y="349.0" width="187.9" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="475.0" y="363.0" font-size="11.5" fill="#374151" text-anchor="middle">2. resolve(handle) -&gt; самая</text>
+<text x="475.0" y="379.0" font-size="11.5" fill="#374151" text-anchor="middle">полная форма</text>
+<path d="M 590.0 438.0 L 360.0 438.0" fill="none" stroke="#5B6575" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="432.6" y="415.0" width="84.8" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="475.0" y="429.0" font-size="11.5" fill="#374151" text-anchor="middle">3. значения</text>
+<path d="M 360.0 488.0 L 820.0 488.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="428.4" y="465.0" width="323.1" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="590.0" y="479.0" font-size="11.5" fill="#374151" text-anchor="middle">4. report.md с именами, экранирование по формату</text>
+<path d="M 360.0 554.0 L 130.0 554.0" fill="none" stroke="#5B6575" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="141.4" y="515.0" width="207.2" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="529.0" font-size="11.5" fill="#374151" text-anchor="middle">5. bytes, sha256, resolved=17,</text>
+<text x="245.0" y="545.0" font-size="11.5" fill="#374151" text-anchor="middle">unresolved=[...]</text>
+<path d="M 130.0 652.0 L 360.0 652.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="160.7" y="629.0" width="168.6" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="643.0" font-size="11.5" fill="#374151" text-anchor="middle">6. exec(docx, report.md)</text>
+<path d="M 360.0 702.0 L 1050.0 702.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="517.7" y="679.0" width="374.6" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="705.0" y="693.0" font-size="11.5" fill="#374151" text-anchor="middle">7. pandoc report.md -o report.docx (cwd=out/, без shell)</text>
+<path d="M 1050.0 752.0 L 820.0 752.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="882.9" y="729.0" width="104.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="935.0" y="743.0" font-size="11.5" fill="#374151" text-anchor="middle">8. report.docx</text>
+<path d="M 360.0 834.0 L 130.0 834.0" fill="none" stroke="#5B6575" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="144.6" y="779.0" width="200.8" height="52" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="793.0" font-size="11.5" fill="#374151" text-anchor="middle">9. exit 0,</text>
+<text x="245.0" y="809.0" font-size="11.5" fill="#374151" text-anchor="middle">produced=[report.docx], хвост</text>
+<text x="245.0" y="825.0" font-size="11.5" fill="#374151" text-anchor="middle">stdout через guard</text>
+<path d="M 130.0 948.0 L 360.0 948.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="151.1" y="909.0" width="187.9" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="923.0" font-size="11.5" fill="#374151" text-anchor="middle">10. render(scheme.yaml,</text>
+<text x="245.0" y="939.0" font-size="11.5" fill="#374151" text-anchor="middle">YAML-спека схемы с handles)</text>
+<path d="M 130.0 998.0 L 360.0 998.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="141.4" y="975.0" width="207.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="989.0" font-size="11.5" fill="#374151" text-anchor="middle">11. exec(diagram, scheme.yaml)</text>
+<path d="M 360.0 1048.0 L 1050.0 1048.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="537.0" y="1025.0" width="336.0" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="705.0" y="1039.0" font-size="11.5" fill="#374151" text-anchor="middle">12. render.py --drawio scheme.yaml (из tools.yaml)</text>
+<path d="M 1050.0 1114.0 L 820.0 1114.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="841.1" y="1075.0" width="187.9" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="935.0" y="1089.0" font-size="11.5" fill="#374151" text-anchor="middle">13. scheme.png, scheme.svg,</text>
+<text x="935.0" y="1105.0" font-size="11.5" fill="#374151" text-anchor="middle">scheme.drawio</text>
+<path d="M 360.0 1180.0 L 130.0 1180.0" fill="none" stroke="#5B6575" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="163.9" y="1141.0" width="162.1" height="36" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="245.0" y="1155.0" font-size="11.5" fill="#374151" text-anchor="middle">14. produced=[3 файла],</text>
+<text x="245.0" y="1171.0" font-size="11.5" fill="#374151" text-anchor="middle">значений нет</text>
+<text x="46" y="250" font-size="12.5" font-weight="700" fill="#475569" letter-spacing="0.4" stroke="#F8FAFC" stroke-width="5" paint-order="stroke">ОТЧЁТ</text>
+<text x="46" y="596" font-size="12.5" font-weight="700" fill="#475569" letter-spacing="0.4" stroke="#F8FAFC" stroke-width="5" paint-order="stroke">ДОКУМЕНТ</text>
+<text x="46" y="876" font-size="12.5" font-weight="700" fill="#475569" letter-spacing="0.4" stroke="#F8FAFC" stroke-width="5" paint-order="stroke">СХЕМА</text>
+<rect x="40.0" y="120" width="180" height="82" rx="10" fill="#FFFFFF" stroke="#9AA3AF" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40.0" y="130" width="4" height="62" rx="2" fill="#9AA3AF"/>
+<text x="56.0" y="146.0" font-size="15" font-weight="700" fill="#374151">Облачный агент</text>
+<text x="56.0" y="166.0" font-size="12.5" fill="#4B5563">знает только handles</text>
+<rect x="270.0" y="120" width="180" height="82" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="270.0" y="130" width="4" height="62" rx="2" fill="#2F5D9A"/>
+<text x="286.0" y="146.0" font-size="15" font-weight="700" fill="#1F3A5F">MCP datavault</text>
+<text x="286.0" y="166.0" font-size="12.5" fill="#4B5563">render, exec,</text>
+<text x="286.0" y="182.0" font-size="12.5" fill="#4B5563">out_files</text>
+<rect x="500.0" y="120" width="180" height="82" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="500.0" y="130" width="4" height="62" rx="2" fill="#2F5D9A"/>
+<text x="516.0" y="146.0" font-size="15" font-weight="700" fill="#1F3A5F">Handle store</text>
+<text x="516.0" y="166.0" font-size="12.5" fill="#4B5563">SQLite</text>
+<rect x="730.0" y="120" width="180" height="82" rx="10" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="730.0" y="130" width="4" height="62" rx="2" fill="#8A93A0"/>
+<text x="746.0" y="146.0" font-size="15" font-weight="700" fill="#374151">out/ дела</text>
+<text x="746.0" y="166.0" font-size="12.5" fill="#4B5563">chmod 600</text>
+<rect x="960.0" y="120" width="180" height="82" rx="10" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="960.0" y="130" width="4" height="62" rx="2" fill="#2A8C99"/>
+<text x="976.0" y="146.0" font-size="15" font-weight="700" fill="#16616B">генератор схем /</text>
+<text x="976.0" y="165.0" font-size="15" font-weight="700" fill="#16616B">pandoc</text>
+<text x="976.0" y="185.0" font-size="12.5" fill="#4B5563">allow-list tools.yaml</text>
+<rect x="60.0" y="1202" width="830.0" height="38" rx="10" fill="#FFF8DB" stroke="#D9B44A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="60.0" y="1212" width="4" height="18" rx="2" fill="#D9B44A"/>
+<text x="76.0" y="1229.0" font-size="12.5" fill="#4B5563">Человек открывает out/ локально. В облако имена не уходят ни на одном шаге.</text>
+</svg>

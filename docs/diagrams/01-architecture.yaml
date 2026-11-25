@@ -1,0 +1,35 @@
+title: "DataVault. Архитектура"
+subtitle: "Облачный агент видит только handles и типизированные ответы, данные читают локальные модели"
+grid: {cols: 3, col_width: 250, col_gap: 90, row_gap: 60}
+legend:
+  - {kind: external, label: "облако"}
+  - {kind: stage1, label: "DataVault"}
+  - {kind: security, label: "защита"}
+  - {kind: tool, label: "локальные модели"}
+  - {kind: infra, label: "данные"}
+  - {edge: dotted, label: "запрещено"}
+zones:
+  - {id: cloud, label: "Облако", rows: [0, 0], cols: [0, 2], style: perimeter, dashed: true}
+  - {id: mac, label: "Локальная машина (Apple Silicon)", rows: [1, 4], cols: [0, 2], style: dc}
+nodes:
+  - {id: claude, label: "Claude Code", sub: "план, скиллы, отчёты с handles", row: 0, col: 1, kind: external}
+  - {id: egress, label: "Egress DLP", sub: "опционально, 2-й рубеж", row: 0, col: 2, kind: security}
+  - {id: mcp, label: "MCP datavault", sub: "search read extract aggregate", row: 1, col: 1, kind: stage1}
+  - {id: deny, label: "deny-правила", sub: "Read/Bash ~/DataVault", row: 1, col: 0, kind: security}
+  - {id: guard, label: "Output guard", sub: "sweep + DLP + словарь", row: 2, col: 1, kind: security}
+  - {id: gw, label: "Model gateway", sub: "только loopback, без cloud", row: 2, col: 2, kind: stage1}
+  - {id: store, label: "Handle store", sub: "SQLite, [[DV:TYPE:id]]", row: 3, col: 1, shape: db, kind: stage1}
+  - {id: lms, label: "LM Studio / Ollama", sub: "qwen3-4b, lfm2-24b, 27b, bge-m3", row: 3, col: 2, kind: tool}
+  - {id: data, label: "Дела (сырые данные)", sub: "документы, выгрузки, конфиги", row: 4, col: 0, shape: db, kind: infra}
+  - {id: ingest, label: "Ingest", sub: "parse, detect (через gateway), sweep", row: 4, col: 1, kind: stage1}
+edges:
+  - {from: claude, to: mcp, label: "handles + JSON", both: true}
+  - {from: claude, to: egress, style: dashed, label: "egress"}
+  - {from: mcp, to: guard}
+  - {from: guard, to: store, label: "handles"}
+  - {from: mcp, to: gw, label: "сырые куски", exit: right, enter: top}
+  - {from: gw, to: lms, label: "127.0.0.1"}
+  - {from: data, to: ingest}
+  - {from: ingest, to: store}
+  - {from: claude, to: deny, style: dotted, noarrow: true, exit: left, enter: top, label: "прямое чтение"}
+  - {from: deny, to: data, style: dotted, noarrow: true, label: "блок"}

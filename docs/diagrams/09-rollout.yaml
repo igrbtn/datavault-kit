@@ -1,0 +1,37 @@
+title: "Раскатка агентом"
+subtitle: "Шаги docs/AGENT.md: каждый заканчивается проверкой, дальше без неё не идти"
+grid: {cols: 3, col_width: 240, col_gap: 80, row_gap: 45, equal_height: false}
+legend:
+  - {kind: external, label: "начало / конец"}
+  - {kind: stage1, label: "шаг агента"}
+  - {kind: stage2, label: "шаг человека"}
+  - {kind: stage3, label: "проверка"}
+  - {kind: legacy, label: "стоп, разбор"}
+nodes:
+  - {id: start, label: "Хост готов", sub: "macOS, Apple Silicon, Python 3.12", row: 0, col: 1, shape: terminal, kind: external}
+  - {id: s0, label: "0. Разведка", sub: "RAM, runtime, где данные, cwd агента", row: 1, col: 1, kind: stage1}
+  - {id: s1, label: "1. Установка", sub: "venv, pip install, pytest", row: 2, col: 1, kind: stage1}
+  - {id: s2, label: "2. Локальные модели", sub: "LM Studio / Ollama, models.yaml", row: 3, col: 1, kind: stage1}
+  - {id: c2, label: "datavault check", sub: "все маршруты ok?", row: 4, col: 1, shape: decision, kind: stage3}
+  - {id: fix, label: "Подобрать модели", sub: "по объёму RAM, cloud запрещён", row: 4, col: 2, kind: legacy}
+  - {id: s3, label: "3. Подключение к агенту", sub: "MCP, hooks, permissions.deny", row: 5, col: 1, kind: stage1}
+  - {id: s3h, label: "Утверждение", sub: "человек смотрит diff settings.json", row: 5, col: 0, kind: stage2}
+  - {id: s4, label: "4. Hardening", sub: "harden --tighten, FileVault", row: 6, col: 1, kind: stage1}
+  - {id: s5, label: "5. Приёмка", sub: "dlptest-дело, leakcheck, hook-тесты", row: 7, col: 1, kind: stage1}
+  - {id: c5, label: "0 утечек, все guards on?", row: 8, col: 1, shape: decision, kind: stage3}
+  - {id: stop, label: "Стоп", sub: "отчёт человеку, данные не грузить", row: 8, col: 2, kind: legacy}
+  - {id: done, label: "Готово к делам", sub: "отчёт о раскатке", row: 9, col: 1, shape: terminal, kind: external}
+edges:
+  - {from: start, to: s0}
+  - {from: s0, to: s1}
+  - {from: s1, to: s2}
+  - {from: s2, to: c2}
+  - {from: c2, to: s3, label: "да", label_at: start}
+  - {from: c2, to: fix, label: "нет", exit: right, enter: left}
+  - {from: fix, to: s2, exit: top, enter: right}
+  - {from: s3, to: s3h, style: dashed, label: "diff", exit: left, enter: right}
+  - {from: s3, to: s4}
+  - {from: s4, to: s5}
+  - {from: s5, to: c5}
+  - {from: c5, to: done, label: "да", label_at: start}
+  - {from: c5, to: stop, label: "нет", exit: right, enter: left}

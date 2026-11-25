@@ -1,0 +1,13 @@
+# Local tools the agent may run on rendered files in a case's out/ dir (P3 exec).
+# Placeholders: {input} file name in out/, {stem} name without extension, {outdir} out/ path.
+# Override: ~/DataVault/tools.yaml (same schema). Commands run with cwd = out/, no shell.
+tools:
+  docx:
+    desc: "pandoc: Markdown -> DOCX"
+    inputs: [".md"]
+    cmd: ["pandoc", "{input}", "-o", "{stem}.docx"]
+  # Example: a diagram generator that turns a YAML spec with real values into PNG/SVG.
+  # diagram:
+  #   desc: "YAML spec -> SVG/PNG/drawio"
+  #   inputs: [".yaml", ".yml"]
+  #   cmd: ["python3", "~/tools/diagram/render.py", "--drawio", "{input}"]

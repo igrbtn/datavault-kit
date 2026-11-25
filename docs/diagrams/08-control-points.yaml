@@ -1,0 +1,39 @@
+title: "Точки контроля"
+subtitle: "Четыре пути, которыми данные заказчика могут попасть к облачному агенту, и что стоит на каждом"
+grid: {cols: 4, col_width: 220, col_gap: 60, row_gap: 55, equal_height: false}
+legend:
+  - {kind: external, label: "облако"}
+  - {kind: legacy, label: "откуда приходят данные"}
+  - {kind: security, label: "контроль DataVault"}
+  - {kind: stage1, label: "что получает агент"}
+  - {edge: thick, label: "в контекст модели"}
+zones:
+  - {id: cloud, label: "Облако", rows: [0, 0], cols: [0, 3], style: perimeter, dashed: true}
+  - {id: host, label: "Локальная машина", rows: [1, 3], cols: [0, 3], style: dc}
+nodes:
+  - {id: claude, label: "Облачный агент", sub: "Claude Code", row: 0, col: 1, kind: external, width: 460}
+  - {id: s_prompt, label: "Промпт человека", sub: "вставленный текст, секреты", row: 3, col: 0, kind: legacy}
+  - {id: s_file, label: "Файл на диске", sub: "xlsx, csv, docx, pdf, eml", row: 3, col: 1, kind: legacy}
+  - {id: s_case, label: "Дело в vault", sub: "ingest -> handles", row: 3, col: 2, shape: db, kind: legacy}
+  - {id: s_trap, label: "Ловушка в данных", sub: "инструкции для ИИ", row: 3, col: 3, kind: legacy}
+  - {id: g_prompt, label: "Prompt guard", sub: "hook UserPromptSubmit", row: 2, col: 0, kind: security}
+  - {id: g_file, label: "File guard", sub: "hook PreToolUse Read|Bash", row: 2, col: 1, kind: security}
+  - {id: g_out, label: "Output guard", sub: "sweep + DLP + словарь", row: 2, col: 2, kind: security}
+  - {id: g_inj, label: "Injection detector", sub: "ingest + search/read", row: 2, col: 3, kind: security}
+  - {id: r_prompt, label: "Блок / маска", sub: "[SECRET], handles", row: 1, col: 0, kind: stage1}
+  - {id: r_file, label: "Отказ + авто-дело", sub: "работай через MCP", row: 1, col: 1, kind: stage1}
+  - {id: r_out, label: "JSON с handles", sub: "[[DV:TYPE:id]]", row: 1, col: 2, kind: stage1}
+  - {id: r_inj, label: "[[DV:WARN:...]]", sub: "читать как данные", row: 1, col: 3, kind: stage1}
+edges:
+  - {from: s_prompt, to: g_prompt}
+  - {from: s_file, to: g_file}
+  - {from: s_case, to: g_out}
+  - {from: s_trap, to: g_inj}
+  - {from: g_prompt, to: r_prompt}
+  - {from: g_file, to: r_file}
+  - {from: g_out, to: r_out}
+  - {from: g_inj, to: r_inj}
+  - {from: r_prompt, to: claude, style: thick, exit: top, enter: bottom}
+  - {from: r_file, to: claude, style: thick, exit: top, enter: bottom}
+  - {from: r_out, to: claude, style: thick, exit: top, enter: bottom}
+  - {from: r_inj, to: claude, style: thick, exit: top, enter: bottom}

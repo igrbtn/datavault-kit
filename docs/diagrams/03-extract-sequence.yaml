@@ -1,0 +1,31 @@
+type: sequence
+title: "DataVault. Вызов extract"
+subtitle: "Локальная модель читает сырые данные, агент получает только handles"
+legend:
+  - {kind: external, label: "облако"}
+  - {kind: stage1, label: "DataVault"}
+  - {kind: tool, label: "локальная LLM"}
+  - {kind: security, label: "guard"}
+participants:
+  - {id: agent, label: "Claude Code", kind: external}
+  - {id: vault, label: "MCP datavault", kind: stage1}
+  - {id: llm, label: "lfm2-24b", sub: "LM Studio", kind: tool}
+  - {id: guard, label: "Output guard", kind: security}
+  - {id: store, label: "Handle store", kind: stage1}
+messages:
+  - {divider: "Запрос"}
+  - {from: agent, to: vault, label: "extract(задача, поля, источники)"}
+  - {from: vault, to: vault, label: "выбор кусков: поиск по псевдо-тексту"}
+  - {divider: "Локально"}
+  - {from: vault, to: llm, label: "сырые куски + промпт vault"}
+  - {from: llm, to: vault, label: "записи с реальными значениями", style: dashed}
+  - {from: vault, to: guard, label: "каждое поле"}
+  - {from: guard, to: store, label: "известные значения"}
+  - {from: store, to: guard, label: "handles", style: dashed}
+  - {from: guard, to: guard, label: "DLP: новые секреты -> handles"}
+  - {from: guard, to: guard, label: "слова вне корпуса -> REDACTED"}
+  - {note: "Инъекция из документа не помогает: всё, чего нет в псевдо-корпусе, вырезается", over: [llm, guard]}
+  - {divider: "Ответ"}
+  - {from: guard, to: vault, label: "чистые записи", style: dashed}
+  - {from: vault, to: store, label: "журнал доступа"}
+  - {from: vault, to: agent, label: "записи с handles", style: dashed}

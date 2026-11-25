@@ -1,0 +1,39 @@
+title: "A/B. Что доходит до облачного агента"
+subtitle: "Одна задача (аудит AD по выгрузке), два пути к данным"
+grid: {cols: 3, col_width: 250, col_gap: 90, row_gap: 60}
+views: [{id: a, label: "A: агент читает файлы"}, {id: b, label: "B: агент через DataVault"}]
+legend:
+  - {kind: external, label: "облако"}
+  - {kind: legacy, label: "реальные данные"}
+  - {kind: stage1, label: "DataVault"}
+  - {kind: security, label: "защита"}
+  - {edge: thick, label: "что уходит в облако"}
+  - {edge: dotted, label: "запрещено"}
+zones:
+  - {id: cloud, label: "Облако", rows: [0, 0], cols: [0, 2], style: perimeter, dashed: true}
+  - {id: mac, label: "Локально", rows: [1, 3], cols: [0, 2], style: dc}
+nodes:
+  - {id: claude, label: "Облачный агент", sub: "пишет отчёт", row: 0, col: 1, kind: external}
+  - {id: seen_a, label: "36 тыс. символов", sub: "129 логинов, 94 имени, 19 хостов, 14 IP", row: 1, col: 1, kind: legacy, views: [a]}
+  - {id: csv_a, label: "22 CSV-файла", sub: "python прямо по файлам", row: 2, col: 1, shape: db, kind: legacy, views: [a]}
+  - {id: rep_a, label: "Отчёт", sub: "с реальными именами", row: 2, col: 2, kind: legacy, views: [a]}
+  - {id: seen_b, label: "63 тыс. символов", sub: "134 handles, 0 имён, 0 IP, 0 хостов", row: 1, col: 1, kind: stage1, views: [b]}
+  - {id: mcp, label: "MCP datavault", sub: "schema, aggregate, rows, describe", row: 2, col: 1, kind: stage1, views: [b]}
+  - {id: guard, label: "Output guard", sub: "sweep + словарь корпуса", row: 2, col: 0, kind: security, views: [b]}
+  - {id: store, label: "Handle store", sub: "[[DV:TYPE:id]] = значение", row: 3, col: 0, shape: db, kind: stage1, views: [b]}
+  - {id: csv_b, label: "22 CSV-файла", sub: "читает только ingest", row: 3, col: 1, shape: db, kind: legacy, views: [b]}
+  - {id: render, label: "render / exec", sub: "handles -> значения, только в out/", row: 3, col: 2, kind: security, views: [b]}
+  - {id: rep_b, label: "Отчёт", sub: "с handles; docx с именами в out/", row: 2, col: 2, kind: stage1, views: [b]}
+edges:
+  - {from: csv_a, to: seen_a, label: "вывод скриптов", views: [a]}
+  - {from: seen_a, to: claude, style: thick, label: "в контекст модели", views: [a]}
+  - {from: claude, to: rep_a, exit: right, enter: top, label: "3.5 мин, 10 вызовов", views: [a]}
+  - {from: csv_b, to: mcp, label: "ingest -> pseudo", views: [b]}
+  - {from: mcp, to: guard, both: true, views: [b]}
+  - {from: guard, to: store, views: [b]}
+  - {from: mcp, to: seen_b, label: "JSON с handles", views: [b]}
+  - {from: seen_b, to: claude, style: thick, label: "в контекст модели", views: [b]}
+  - {from: claude, to: rep_b, exit: right, enter: top, label: "6 мин, 93 вызова", views: [b]}
+  - {from: rep_b, to: render, label: "шаблон с handles", views: [b]}
+  - {from: store, to: render, style: dashed, label: "resolve локально", exit: bottom, enter: bottom, views: [b]}
+  - {from: claude, to: csv_b, style: dotted, noarrow: true, exit: left, enter: left, label: "deny-правила", views: [b]}

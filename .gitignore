@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+.env.*
+!.env.example
+# never commit case data
+cases/
+*.sqlite
+*.db
+build/
+.DS_Store

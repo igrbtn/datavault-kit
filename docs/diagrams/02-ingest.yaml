@@ -1,0 +1,30 @@
+title: "DataVault. Конвейер ингеста"
+subtitle: "Найти значение один раз где угодно, вычистить его во всём деле"
+grid: {cols: 3, col_width: 240, col_gap: 80, row_gap: 50, equal_height: false}
+legend:
+  - {kind: infra, label: "данные"}
+  - {kind: stage1, label: "шаг"}
+  - {kind: tool, label: "локальная LLM"}
+  - {kind: security, label: "правила"}
+  - {kind: stage2, label: "результат"}
+nodes:
+  - {id: src, label: "Источники дела", sub: "csv xlsx docx pdf eml cfg env ps1", row: 0, col: 1, shape: db, kind: infra}
+  - {id: parse, label: "Парсеры", sub: "куски по 1500 + таблицы", row: 1, col: 1, kind: stage1}
+  - {id: regex, label: "Regex + DLP", sub: "IP, хосты, секреты, ПИНФЛ, телефоны", row: 2, col: 0, kind: security}
+  - {id: hdr, label: "Заголовки колонок", sub: "правила, LLM для Name", row: 2, col: 1, kind: security}
+  - {id: ner, label: "LLM NER", sub: "qwen3-4b, только дословные", row: 2, col: 2, kind: tool}
+  - {id: store, label: "Handle store", sub: "связывание ФИО, алиасы фамилий", row: 3, col: 1, shape: db, kind: stage1}
+  - {id: sweep, label: "Sweep", sub: "словарь + падежи + телефоны", row: 4, col: 1, kind: stage1}
+  - {id: pseudo, label: "Псевдо-куски", sub: "[[DV:PER:k3f9ab]]", row: 5, col: 0, kind: stage2}
+  - {id: emb, label: "Эмбеддинги", sub: "bge-m3 по псевдо-тексту", row: 5, col: 2, kind: tool}
+edges:
+  - {from: src, to: parse}
+  - {from: parse, to: regex, exit: left, enter: top}
+  - {from: parse, to: hdr, label: "таблицы"}
+  - {from: parse, to: ner, label: "текст", exit: right, enter: top}
+  - {from: regex, to: store, exit: bottom, enter: left}
+  - {from: hdr, to: store}
+  - {from: ner, to: store, exit: bottom, enter: right}
+  - {from: store, to: sweep, label: "все значения"}
+  - {from: sweep, to: pseudo, exit: left, enter: top}
+  - {from: sweep, to: emb, exit: right, enter: top}

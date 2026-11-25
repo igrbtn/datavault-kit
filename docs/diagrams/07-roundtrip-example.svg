@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="837" viewBox="0 0 1320 837" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<filter id="sh" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40" y="58" font-size="22" font-weight="700" fill="#111827">Путь одной записи: туда и обратно</text>
+<text x="40" y="82" font-size="13.5" fill="#6B7280">Синтетический пример. Значения существуют только слева внизу и справа внизу, оба раза на этом Mac</text>
+<rect x="22" y="112" width="596" height="653" rx="14" fill="#F5F8FD" stroke="#B9CCE6" stroke-width="1.3"/>
+<rect x="702" y="112" width="596" height="653" rx="14" fill="#F7F7F9" stroke="#C9CDD6" stroke-width="1.3"/>
+<path d="M 320.0 229.0 L 320.0 279.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 320.0 358.0 L 320.0 408.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="238.9" y="373.0" width="162.1" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="320.0" y="387.0" font-size="11.5" fill="#374151" text-anchor="middle">один handle на значение</text>
+<path d="M 320.0 505.0 L 320.0 555.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="261.5" y="520.0" width="117.0" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="320.0" y="534.0" font-size="11.5" fill="#374151" text-anchor="middle">sweep по словарю</text>
+<path d="M 320.0 634.0 L 320.0 684.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 600.0 715.5 L 660.0 715.5 L 660.0 189.5 L 720.0 189.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="607.9" y="521.4" width="104.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="660.0" y="535.4" font-size="11.5" fill="#374151" text-anchor="middle">JSON с handles</text>
+<path d="M 1000.0 229.0 L 1000.0 279.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1000.0 358.0 L 1000.0 417.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 600.0 456.5 L 720.0 456.5" fill="none" stroke="#5B6575" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="660.8" y="396.5" width="65.5" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="693.6" y="410.5" font-size="11.5" fill="#374151" text-anchor="middle">значения</text>
+<path d="M 1000.0 496.0 L 1000.0 555.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 1000.0 634.0 L 1000.0 684.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<text x="38" y="134" font-size="12.5" font-weight="700" fill="#1F3A5F" letter-spacing="0.4" stroke="#F5F8FD" stroke-width="5" paint-order="stroke">ТУДА: INGEST И ЗАПРОСЫ</text>
+<text x="718" y="134" font-size="12.5" font-weight="700" fill="#4B5563" letter-spacing="0.4" stroke="#F7F7F9" stroke-width="5" paint-order="stroke">ОБРАТНО: ОТЧЁТ И RENDER</text>
+<rect x="40" y="150.0" width="560" height="79" rx="10" fill="#FDECEC" stroke="#C0504D" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="160.0" width="4" height="59" rx="2" fill="#C0504D"/>
+<text x="56" y="176.0" font-size="15" font-weight="700" fill="#8B1E1B">Исходная строка в docx</text>
+<text x="56" y="196.0" font-size="12.5" fill="#4B5563">Сервер srv-bkp01 (10.20.30.40), админ Иванов Иван, ivan@corp.local, пароль</text>
+<text x="56" y="212.0" font-size="12.5" fill="#4B5563">Qw3rty!</text>
+<rect x="40" y="279.0" width="560" height="79" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="289.0" width="4" height="59" rx="2" fill="#2F5D9A"/>
+<text x="56" y="305.0" font-size="15" font-weight="700" fill="#1F3A5F">detect: правила + NER</text>
+<text x="56" y="325.0" font-size="12.5" fill="#4B5563">HOST srv-bkp01 | IP 10.20.30.40 | PER Иванов Иван | EMAIL ivan@corp.local |</text>
+<text x="56" y="341.0" font-size="12.5" fill="#4B5563">SECRET Qw3rty!</text>
+<path d="M 40 417.0 A 280.0 9 0 0 1 600 417.0 L 600 496.0 A 280.0 9 0 0 1 40 496.0 Z" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/><path d="M 40 417.0 A 280.0 9 0 0 0 600 417.0" fill="none" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="320.0" y="451.5" font-size="15" font-weight="700" fill="#1F3A5F" text-anchor="middle">Handle store (SQLite)</text>
+<text x="320.0" y="471.5" font-size="12.5" fill="#4B5563" text-anchor="middle">srv-bkp01 = [[DV:HOST:u4pcsk]], Иванов Иван = [[DV:PER:k3m9qa]], формы</text>
+<text x="320.0" y="487.5" font-size="12.5" fill="#4B5563" text-anchor="middle">'Иванова', 'И. Иванов' - тот же handle</text>
+<rect x="40" y="555.0" width="560" height="79" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="565.0" width="4" height="59" rx="2" fill="#2F5D9A"/>
+<text x="56" y="581.0" font-size="15" font-weight="700" fill="#1F3A5F">Псевдокорпус</text>
+<text x="56" y="601.0" font-size="12.5" fill="#4B5563">Сервер [[DV:HOST:u4pcsk]] ([[DV:IP:asdgod]]), админ [[DV:PER:k3m9qa]],</text>
+<text x="56" y="617.0" font-size="12.5" fill="#4B5563">[[DV:EMAIL:7hf2pz]], пароль [[DV:SECRET:h2cgou]]</text>
+<rect x="40" y="684.0" width="560" height="63" rx="10" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="694.0" width="4" height="43" rx="2" fill="#7A5AC8"/>
+<text x="56" y="710.0" font-size="15" font-weight="700" fill="#4C2F96">search / aggregate / extract</text>
+<text x="56" y="730.0" font-size="12.5" fill="#4B5563">ответы с handles, output guard режет всё, чего нет в псевдокорпусе</text>
+<rect x="720" y="150.0" width="560" height="79" rx="10" fill="#FFFFFF" stroke="#9AA3AF" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="720" y="160.0" width="4" height="59" rx="2" fill="#9AA3AF"/>
+<text x="736" y="176.0" font-size="15" font-weight="700" fill="#374151">Облачный агент</text>
+<text x="736" y="196.0" font-size="12.5" fill="#4B5563">Сервер [[DV:HOST:u4pcsk]] ([[DV:IP:asdgod]]) ведёт [[DV:PER:k3m9qa]]; пароль</text>
+<text x="736" y="212.0" font-size="12.5" fill="#4B5563">в открытом виде в документе - риск</text>
+<rect x="720" y="279.0" width="560" height="79" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="720" y="289.0" width="4" height="59" rx="2" fill="#2F5D9A"/>
+<text x="736" y="305.0" font-size="15" font-weight="700" fill="#1F3A5F">render(report.md, шаблон)</text>
+<text x="736" y="325.0" font-size="12.5" fill="#4B5563">шаблон с handles уходит в vault; агент получает bytes, sha256, resolved=3,</text>
+<text x="736" y="341.0" font-size="12.5" fill="#4B5563">withheld=1</text>
+<rect x="720" y="417.0" width="560" height="79" rx="10" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="720" y="427.0" width="4" height="59" rx="2" fill="#7A5AC8"/>
+<text x="736" y="443.0" font-size="15" font-weight="700" fill="#4C2F96">resolve локально</text>
+<text x="736" y="463.0" font-size="12.5" fill="#4B5563">[[DV:HOST:u4pcsk]] -&gt; srv-bkp01.corp.local (самая полная форма),</text>
+<text x="736" y="479.0" font-size="12.5" fill="#4B5563">[[DV:SECRET:...]] -&gt; [withheld]</text>
+<rect x="720" y="555.0" width="560" height="79" rx="10" fill="#FDECEC" stroke="#C0504D" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="720" y="565.0" width="4" height="59" rx="2" fill="#C0504D"/>
+<text x="736" y="581.0" font-size="15" font-weight="700" fill="#8B1E1B">out/report.md -&gt; exec docx</text>
+<text x="736" y="601.0" font-size="12.5" fill="#4B5563">Сервер srv-bkp01.corp.local (10.20.30.40) ведёт Иванов Иван; пароль</text>
+<text x="736" y="617.0" font-size="12.5" fill="#4B5563">[withheld]</text>
+<rect x="720" y="684.0" width="560" height="63" rx="10" fill="#FFFFFF" stroke="#9AA3AF" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="720" y="694.0" width="4" height="43" rx="2" fill="#9AA3AF"/>
+<text x="736" y="710.0" font-size="15" font-weight="700" fill="#374151">Человек открывает out/</text>
+<text x="736" y="730.0" font-size="12.5" fill="#4B5563">chmod 600, в облако не уходило ни одно значение</text>
+<rect x="40" y="809" width="16" height="16" rx="4" fill="#FDECEC" stroke="#C0504D" stroke-width="1.5"/>
+<text x="64" y="822" font-size="12.5" fill="#4B5563">реальные значения</text>
+<rect x="211.0" y="809" width="16" height="16" rx="4" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="235.0" y="822" font-size="12.5" fill="#4B5563">DataVault</text>
+<rect x="326.0" y="809" width="16" height="16" rx="4" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5"/>
+<text x="350.0" y="822" font-size="12.5" fill="#4B5563">защита</text>
+<rect x="420.0" y="809" width="16" height="16" rx="4" fill="#FFFFFF" stroke="#9AA3AF" stroke-width="1.5"/>
+<text x="444.0" y="822" font-size="12.5" fill="#4B5563">облако: только handles</text>
+</svg>

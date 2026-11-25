@@ -1,0 +1,28 @@
+title: "P3. Render и exec"
+subtitle: "Реальные имена появляются только в файлах out/ на этом Mac"
+type: sequence
+participants:
+  - {id: agent, label: "Облачный агент", sub: "знает только handles", kind: external}
+  - {id: mcp, label: "MCP datavault", sub: "render, exec, out_files", kind: stage1}
+  - {id: store, label: "Handle store", sub: "SQLite", kind: stage1}
+  - {id: out, label: "out/ дела", sub: "chmod 600", kind: infra}
+  - {id: tool, label: "генератор схем / pandoc", sub: "allow-list tools.yaml", kind: tool}
+messages:
+  - {divider: "Отчёт"}
+  - {from: agent, to: mcp, label: "render(report.md, текст с [[DV:HOST:u4pcsk]] ...)"}
+  - {from: mcp, to: store, label: "resolve(handle) -> самая полная форма"}
+  - {from: store, to: mcp, label: "значения", style: dashed}
+  - {from: mcp, to: out, label: "report.md с именами, экранирование по формату"}
+  - {from: mcp, to: agent, label: "bytes, sha256, resolved=17, unresolved=[...]", style: dashed}
+  - {divider: "Документ"}
+  - {from: agent, to: mcp, label: "exec(docx, report.md)"}
+  - {from: mcp, to: tool, label: "pandoc report.md -o report.docx (cwd=out/, без shell)"}
+  - {from: tool, to: out, label: "report.docx"}
+  - {from: mcp, to: agent, label: "exit 0, produced=[report.docx], хвост stdout через guard", style: dashed}
+  - {divider: "Схема"}
+  - {from: agent, to: mcp, label: "render(scheme.yaml, YAML-спека схемы с handles)"}
+  - {from: agent, to: mcp, label: "exec(diagram, scheme.yaml)"}
+  - {from: mcp, to: tool, label: "render.py --drawio scheme.yaml (из tools.yaml)"}
+  - {from: tool, to: out, label: "scheme.png, scheme.svg, scheme.drawio"}
+  - {from: mcp, to: agent, label: "produced=[3 файла], значений нет", style: dashed}
+  - {note: "Человек открывает out/ локально. В облако имена не уходят ни на одном шаге.", over: [agent, out]}

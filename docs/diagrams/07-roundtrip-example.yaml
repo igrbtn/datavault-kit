@@ -1,0 +1,33 @@
+title: "Путь одной записи: туда и обратно"
+subtitle: "Синтетический пример. Значения существуют только слева внизу и справа внизу, оба раза на этом Mac"
+grid: {cols: 2, col_width: 560, col_gap: 120, row_gap: 50, equal_height: false}
+legend:
+  - {kind: legacy, label: "реальные значения"}
+  - {kind: stage1, label: "DataVault"}
+  - {kind: security, label: "защита"}
+  - {kind: external, label: "облако: только handles"}
+zones:
+  - {id: there, label: "Туда: ingest и запросы", rows: [0, 4], cols: [0, 0], style: dc}
+  - {id: back, label: "Обратно: отчёт и render", rows: [0, 4], cols: [1, 1], style: dc2}
+nodes:
+  - {id: src, label: "Исходная строка в docx", sub: "Сервер srv-bkp01 (10.20.30.40), админ Иванов Иван, ivan@corp.local, пароль Qw3rty!", row: 0, col: 0, kind: legacy}
+  - {id: det, label: "detect: правила + NER", sub: "HOST srv-bkp01 | IP 10.20.30.40 | PER Иванов Иван | EMAIL ivan@corp.local | SECRET Qw3rty!", row: 1, col: 0, kind: stage1}
+  - {id: store, label: "Handle store (SQLite)", sub: "srv-bkp01 = [[DV:HOST:u4pcsk]], Иванов Иван = [[DV:PER:k3m9qa]], формы 'Иванова', 'И. Иванов' - тот же handle", row: 2, col: 0, shape: db, kind: stage1}
+  - {id: pseudo, label: "Псевдокорпус", sub: "Сервер [[DV:HOST:u4pcsk]] ([[DV:IP:asdgod]]), админ [[DV:PER:k3m9qa]], [[DV:EMAIL:7hf2pz]], пароль [[DV:SECRET:h2cgou]]", row: 3, col: 0, kind: stage1}
+  - {id: tools, label: "search / aggregate / extract", sub: "ответы с handles, output guard режет всё, чего нет в псевдокорпусе", row: 4, col: 0, kind: security}
+  - {id: agent, label: "Облачный агент", sub: "Сервер [[DV:HOST:u4pcsk]] ([[DV:IP:asdgod]]) ведёт [[DV:PER:k3m9qa]]; пароль в открытом виде в документе - риск", row: 0, col: 1, kind: external}
+  - {id: tmpl, label: "render(report.md, шаблон)", sub: "шаблон с handles уходит в vault; агент получает bytes, sha256, resolved=3, withheld=1", row: 1, col: 1, kind: stage1}
+  - {id: resolve, label: "resolve локально", sub: "[[DV:HOST:u4pcsk]] -> srv-bkp01.corp.local (самая полная форма), [[DV:SECRET:...]] -> [withheld]", row: 2, col: 1, kind: security}
+  - {id: out, label: "out/report.md -> exec docx", sub: "Сервер srv-bkp01.corp.local (10.20.30.40) ведёт Иванов Иван; пароль [withheld]", row: 3, col: 1, kind: legacy}
+  - {id: human, label: "Человек открывает out/", sub: "chmod 600, в облако не уходило ни одно значение", row: 4, col: 1, kind: external}
+edges:
+  - {from: src, to: det}
+  - {from: det, to: store, label: "один handle на значение"}
+  - {from: store, to: pseudo, label: "sweep по словарю"}
+  - {from: pseudo, to: tools}
+  - {from: tools, to: agent, label: "JSON с handles", exit: right, enter: left}
+  - {from: agent, to: tmpl}
+  - {from: tmpl, to: resolve}
+  - {from: store, to: resolve, style: dashed, label: "значения", exit: right, enter: left}
+  - {from: resolve, to: out}
+  - {from: out, to: human}

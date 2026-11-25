@@ -1,0 +1,16 @@
+# ~/DataVault/promptguard.yaml - policy of the prompt guard and the file guard.
+# Every key is optional; without the file the defaults below apply.
+
+mode: block            # block | warn | off   (what to do with secrets and case values in a prompt)
+injection: warn        # warn | block | off   (injection markers pasted into a prompt)
+# block_types: [SECRET, BANK, ID]
+# warn_types: [EMAIL, PHONE, IP]
+# cases: [case-07]     # check only these cases' values (default: every case)
+allow:                 # regex: values that never trigger (own lab ranges, test domains)
+  - '\b10\.99\.\d+\.\d+\b'
+
+file_guard:
+  mode: block          # block | warn | off
+  # extensions: [xlsx, xls, xlsm, csv, tsv, docx, doc, pdf, eml, msg]
+  # allow:             # regex on absolute paths that stay readable for the agent
+  #   - '^/Users/[^/]+/lab/'

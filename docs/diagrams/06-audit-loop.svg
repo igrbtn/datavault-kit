@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1074" height="857" viewBox="0 0 1074 857" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<filter id="sh" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40" y="58" font-size="22" font-weight="700" fill="#111827">Цикл аудита утечек</text>
+<text x="40" y="82" font-size="13.5" fill="#6B7280">Тяжёлая локальная модель перечитывает псевдокорпус и ищет, что осталось незамаскированным</text>
+<path d="M 290.0 160.5 L 412.0 160.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 662.0 160.5 L 784.0 160.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 909.0 201.0 L 909.0 256.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 909.0 319.0 L 909.0 374.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="831.2" y="336.5" width="155.7" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="909.0" y="350.5" font-size="11.5" fill="#374151" text-anchor="middle">куски по 4000 символов</text>
+<path d="M 909.0 437.0 L 909.0 530.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="818.3" y="473.5" width="181.4" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="909.0" y="487.5" font-size="11.5" fill="#374151" text-anchor="middle">незамаскированные значения</text>
+<path d="M 784.0 570.5 L 662.0 570.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="677.4" y="560.5" width="91.3" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="723.0" y="574.5" font-size="11.5" fill="#374151" text-anchor="middle">только числа</text>
+<path d="M 412.0 570.5 L 290.0 570.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 165.0 492.0 L 165.0 437.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="138.7" y="454.5" width="52.6" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="165.0" y="468.5" font-size="11.5" fill="#374151" text-anchor="middle">утечка</text>
+<path d="M 165.0 649.0 L 165.0 704.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="148.3" y="666.5" width="33.3" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="165.0" y="680.5" font-size="11.5" fill="#374151" text-anchor="middle">шум</text>
+<path d="M 165.0 374.0 L 165.0 319.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="112.9" y="336.5" width="104.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="165.0" y="350.5" font-size="11.5" fill="#374151" text-anchor="middle">нет регрессий?</text>
+<path d="M 165.0 256.0 L 165.0 224.0 L 537.0 224.0 L 537.0 192.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="298.9" y="214.0" width="104.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="351.0" y="228.0" font-size="11.5" fill="#374151" text-anchor="middle">ingest --fresh</text>
+<path d="M 40 129.0 A 125.0 9 0 0 1 290 129.0 L 290 192.0 A 125.0 9 0 0 1 40 192.0 Z" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5" filter="url(#sh)"/><path d="M 40 129.0 A 125.0 9 0 0 0 290 129.0" fill="none" stroke="#8A93A0" stroke-width="1.5"/>
+<text x="165.0" y="163.5" font-size="15" font-weight="700" fill="#374151" text-anchor="middle">Сырые данные дела</text>
+<text x="165.0" y="183.5" font-size="12.5" fill="#4B5563" text-anchor="middle">CSV, docx, pdf, конфиги</text>
+<rect x="412" y="129.0" width="250" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="412" y="139.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="428" y="155.0" font-size="15" font-weight="700" fill="#1F3A5F">ingest</text>
+<text x="428" y="175.0" font-size="12.5" fill="#4B5563">правила + NER + типы колонок</text>
+<path d="M 784 129.0 A 125.0 9 0 0 1 1034 129.0 L 1034 192.0 A 125.0 9 0 0 1 784 192.0 Z" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/><path d="M 784 129.0 A 125.0 9 0 0 0 1034 129.0" fill="none" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="909.0" y="163.5" font-size="15" font-weight="700" fill="#1F3A5F" text-anchor="middle">Псевдокорпус</text>
+<text x="909.0" y="183.5" font-size="12.5" fill="#4B5563" text-anchor="middle">handles вместо значений</text>
+<rect x="784" y="256.0" width="250" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="784" y="266.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="800" y="282.0" font-size="15" font-weight="700" fill="#1F3A5F">Выборка 60 чанков</text>
+<text x="800" y="302.0" font-size="12.5" fill="#4B5563">seed фиксирован</text>
+<rect x="784" y="374.0" width="250" height="63" rx="10" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="784" y="384.0" width="4" height="43" rx="2" fill="#2A8C99"/>
+<text x="800" y="400.0" font-size="15" font-weight="700" fill="#16616B">qwen3.8-27b</text>
+<text x="800" y="420.0" font-size="12.5" fill="#4B5563">LM Studio, 1 запрос за раз</text>
+<path d="M 784 539.0 A 125.0 9 0 0 1 1034 539.0 L 1034 602.0 A 125.0 9 0 0 1 784 602.0 Z" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5" filter="url(#sh)"/><path d="M 784 539.0 A 125.0 9 0 0 0 1034 539.0" fill="none" stroke="#8A93A0" stroke-width="1.5"/>
+<text x="909.0" y="573.5" font-size="15" font-weight="700" fill="#374151" text-anchor="middle">audit.json</text>
+<text x="909.0" y="593.5" font-size="12.5" fill="#4B5563" text-anchor="middle">находки со значениями, 600</text>
+<rect x="412" y="539.0" width="250" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="412" y="549.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="428" y="565.0" font-size="15" font-weight="700" fill="#1F3A5F">Счётчики</text>
+<text x="428" y="585.0" font-size="12.5" fill="#4B5563">по типам, без значений</text>
+<polygon points="165.0,492.0 290,570.5 165.0,649.0 40,570.5" stroke-linejoin="round" fill="#FDF1E2" stroke="#C7741F" stroke-width="1.5" filter="url(#sh)"/>
+<text x="165.0" y="550.0" font-size="15" font-weight="700" fill="#8A4A0F" text-anchor="middle">Утечка или</text>
+<text x="165.0" y="569.0" font-size="15" font-weight="700" fill="#8A4A0F" text-anchor="middle">шум?</text>
+<text x="165.0" y="589.0" font-size="12.5" fill="#4B5563" text-anchor="middle">по форме и</text>
+<text x="165.0" y="605.0" font-size="12.5" fill="#4B5563" text-anchor="middle">колонке</text>
+<rect x="40" y="374.0" width="250" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="384.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="56" y="400.0" font-size="15" font-weight="700" fill="#1F3A5F">Правка правил</text>
+<text x="56" y="420.0" font-size="12.5" fill="#4B5563">regex, header, gate, stop-list</text>
+<rect x="40" y="256.0" width="250" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="266.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="56" y="282.0" font-size="15" font-weight="700" fill="#1F3A5F">Синтетика</text>
+<text x="56" y="302.0" font-size="12.5" fill="#4B5563">recall 1.0 / 0.997 / 1.0</text>
+<rect x="40" y="704.0" width="250" height="63" rx="31.5" fill="#FDF1E2" stroke="#C7741F" stroke-width="1.5" filter="url(#sh)"/>
+<text x="165.0" y="732.5" font-size="15" font-weight="700" fill="#8A4A0F" text-anchor="middle">Допустимые мелочи</text>
+<text x="165.0" y="752.5" font-size="12.5" fill="#4B5563" text-anchor="middle">версии, обрывки, AD-группы</text>
+<rect x="40" y="829" width="16" height="16" rx="4" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="64" y="842" font-size="12.5" fill="#4B5563">DataVault</text>
+<rect x="155.0" y="829" width="16" height="16" rx="4" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5"/>
+<text x="179.0" y="842" font-size="12.5" fill="#4B5563">локальная модель</text>
+<rect x="319.0" y="829" width="16" height="16" rx="4" fill="#FDF1E2" stroke="#C7741F" stroke-width="1.5"/>
+<text x="343.0" y="842" font-size="12.5" fill="#4B5563">решение</text>
+<rect x="420.0" y="829" width="16" height="16" rx="4" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5"/>
+<text x="444.0" y="842" font-size="12.5" fill="#4B5563">файлы на диске</text>
+</svg>

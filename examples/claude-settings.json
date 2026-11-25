@@ -1,0 +1,40 @@
+{
+  "_comment": "Fragment to merge into ~/.claude/settings.json. Replace DATAVAULT_BIN with the absolute path to the datavault executable and HOME_ABS with the absolute home path. Merge into existing arrays, do not replace them.",
+  "permissions": {
+    "deny": [
+      "Read(~/DataVault/**)",
+      "Edit(~/DataVault/**)",
+      "Write(~/DataVault/**)",
+      "Bash(*~/DataVault*)",
+      "Bash(*$HOME/DataVault*)",
+      "Bash(*HOME_ABS/DataVault*)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "DATAVAULT_BIN hook-prompt",
+            "timeout": 15,
+            "statusMessage": "DataVault prompt guard"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "DATAVAULT_BIN hook-file",
+            "timeout": 15,
+            "statusMessage": "DataVault file guard"
+          }
+        ]
+      }
+    ]
+  }
+}

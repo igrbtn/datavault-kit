@@ -1,0 +1,32 @@
+title: "Цикл аудита утечек"
+subtitle: "Тяжёлая локальная модель перечитывает псевдокорпус и ищет, что осталось незамаскированным"
+grid: {cols: 3, col_width: 250, col_gap: 90, row_gap: 55, equal_height: false}
+legend:
+  - {kind: stage1, label: "DataVault"}
+  - {kind: tool, label: "локальная модель"}
+  - {kind: stage3, label: "решение"}
+  - {kind: infra, label: "файлы на диске"}
+nodes:
+  - {id: src, label: "Сырые данные дела", sub: "CSV, docx, pdf, конфиги", row: 0, col: 0, shape: db, kind: infra}
+  - {id: ingest, label: "ingest", sub: "правила + NER + типы колонок", row: 0, col: 1, kind: stage1}
+  - {id: pseudo, label: "Псевдокорпус", sub: "handles вместо значений", row: 0, col: 2, shape: db, kind: stage1}
+  - {id: sample, label: "Выборка 60 чанков", sub: "seed фиксирован", row: 1, col: 2, kind: stage1}
+  - {id: heavy, label: "qwen3.8-27b", sub: "LM Studio, 1 запрос за раз", row: 2, col: 2, kind: tool}
+  - {id: json, label: "audit.json", sub: "находки со значениями, 600", row: 3, col: 2, shape: db, kind: infra}
+  - {id: counts, label: "Счётчики", sub: "по типам, без значений", row: 3, col: 1, kind: stage1}
+  - {id: dec, label: "Утечка или шум?", sub: "по форме и колонке", row: 3, col: 0, shape: decision, kind: stage3}
+  - {id: rules, label: "Правка правил", sub: "regex, header, gate, stop-list", row: 2, col: 0, kind: stage1}
+  - {id: synth, label: "Синтетика", sub: "recall 1.0 / 0.997 / 1.0", row: 1, col: 0, kind: stage1}
+  - {id: done, label: "Допустимые мелочи", sub: "версии, обрывки, AD-группы", row: 4, col: 0, shape: terminal, kind: stage3}
+edges:
+  - {from: src, to: ingest}
+  - {from: ingest, to: pseudo}
+  - {from: pseudo, to: sample}
+  - {from: sample, to: heavy, label: "куски по 4000 символов"}
+  - {from: heavy, to: json, label: "незамаскированные значения"}
+  - {from: json, to: counts, label: "только числа"}
+  - {from: counts, to: dec}
+  - {from: dec, to: rules, label: "утечка", label_at: start}
+  - {from: dec, to: done, label: "шум", label_at: start}
+  - {from: rules, to: synth, label: "нет регрессий?"}
+  - {from: synth, to: ingest, label: "ingest --fresh"}

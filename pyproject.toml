@@ -1,0 +1,52 @@
+[project]
+name = "datavault"
+version = "0.9.1"
+description = "Local quarantined-LLM vault: cloud agent sees handles and typed facts, local models see the data"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp==2.3.0",
+    "httpx==0.28.1",
+    "PyYAML==6.0.3",
+    "openpyxl==3.1.5",
+    "pydantic==2.14.2",
+    "python-docx==1.2.0",
+    "pypdf==6.21.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.2.0",
+    "ruff==0.17.3",
+    "fpdf2==2.9.0",
+]
+
+[project.scripts]
+datavault = "datavault.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+datavault = ["models.yaml", "tools.yaml", "web.html"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# Cyrillic keywords are written as \u escapes (ASCII-only sources), which makes lines long
+"src/datavault/detect.py" = ["E501"]
+"src/datavault/injection.py" = ["E501"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = ["live: needs local LM Studio / Ollama running"]
+addopts = "-m 'not live'"

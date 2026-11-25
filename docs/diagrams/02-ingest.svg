@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="906" viewBox="0 0 960 906" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<marker id="arrow-thick-s" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6575"/></marker>
+<filter id="sh" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40" y="58" font-size="22" font-weight="700" fill="#111827">DataVault. Конвейер ингеста</text>
+<text x="40" y="82" font-size="13.5" fill="#6B7280">Найти значение один раз где угодно, вычистить его во всём деле</text>
+<path d="M 480.0 217.0 L 480.0 267.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 360.0 298.5 L 160.0 298.5 L 160.0 380.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 480.0 330.0 L 480.0 388.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="450.5" y="349.0" width="59.1" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="480.0" y="363.0" font-size="11.5" fill="#374151" text-anchor="middle">таблицы</text>
+<path d="M 600.0 298.5 L 800.0 298.5 L 800.0 388.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="676.9" y="288.5" width="46.2" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="700.0" y="302.5" font-size="11.5" fill="#374151" text-anchor="middle">текст</text>
+<path d="M 160.0 459.0 L 160.0 549.5 L 360.0 549.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 480.0 451.0 L 480.0 509.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 800.0 451.0 L 800.0 549.5 L 600.0 549.5" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 480.0 590.0 L 480.0 640.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<rect x="434.4" y="605.0" width="91.3" height="20" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+<text x="480.0" y="619.0" font-size="11.5" fill="#374151" text-anchor="middle">все значения</text>
+<path d="M 360.0 671.5 L 160.0 671.5 L 160.0 753.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 600.0 671.5 L 800.0 671.5 L 800.0 753.0" fill="none" stroke="#5B6575" stroke-width="1.6" marker-end="url(#arrow)" stroke-linejoin="round"/>
+<path d="M 360 129.0 A 120.0 9 0 0 1 600 129.0 L 600 208.0 A 120.0 9 0 0 1 360 208.0 Z" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5" filter="url(#sh)"/><path d="M 360 129.0 A 120.0 9 0 0 0 600 129.0" fill="none" stroke="#8A93A0" stroke-width="1.5"/>
+<text x="480.0" y="163.5" font-size="15" font-weight="700" fill="#374151" text-anchor="middle">Источники дела</text>
+<text x="480.0" y="183.5" font-size="12.5" fill="#4B5563" text-anchor="middle">csv xlsx docx pdf eml cfg env</text>
+<text x="480.0" y="199.5" font-size="12.5" fill="#4B5563" text-anchor="middle">ps1</text>
+<rect x="360" y="267.0" width="240" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="360" y="277.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="376" y="293.0" font-size="15" font-weight="700" fill="#1F3A5F">Парсеры</text>
+<text x="376" y="313.0" font-size="12.5" fill="#4B5563">куски по 1500 + таблицы</text>
+<rect x="40" y="380.0" width="240" height="79" rx="10" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="390.0" width="4" height="59" rx="2" fill="#7A5AC8"/>
+<text x="56" y="406.0" font-size="15" font-weight="700" fill="#4C2F96">Regex + DLP</text>
+<text x="56" y="426.0" font-size="12.5" fill="#4B5563">IP, хосты, секреты, ПИНФЛ,</text>
+<text x="56" y="442.0" font-size="12.5" fill="#4B5563">телефоны</text>
+<rect x="360" y="388.0" width="240" height="63" rx="10" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="360" y="398.0" width="4" height="43" rx="2" fill="#7A5AC8"/>
+<text x="376" y="414.0" font-size="15" font-weight="700" fill="#4C2F96">Заголовки колонок</text>
+<text x="376" y="434.0" font-size="12.5" fill="#4B5563">правила, LLM для Name</text>
+<rect x="680" y="388.0" width="240" height="63" rx="10" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="680" y="398.0" width="4" height="43" rx="2" fill="#2A8C99"/>
+<text x="696" y="414.0" font-size="15" font-weight="700" fill="#16616B">LLM NER</text>
+<text x="696" y="434.0" font-size="12.5" fill="#4B5563">qwen3-4b, только дословные</text>
+<path d="M 360 518.0 A 120.0 9 0 0 1 600 518.0 L 600 581.0 A 120.0 9 0 0 1 360 581.0 Z" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/><path d="M 360 518.0 A 120.0 9 0 0 0 600 518.0" fill="none" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="480.0" y="552.5" font-size="15" font-weight="700" fill="#1F3A5F" text-anchor="middle">Handle store</text>
+<text x="480.0" y="572.5" font-size="12.5" fill="#4B5563" text-anchor="middle">связывание ФИО, алиасы фамилий</text>
+<rect x="360" y="640.0" width="240" height="63" rx="10" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="360" y="650.0" width="4" height="43" rx="2" fill="#2F5D9A"/>
+<text x="376" y="666.0" font-size="15" font-weight="700" fill="#1F3A5F">Sweep</text>
+<text x="376" y="686.0" font-size="12.5" fill="#4B5563">словарь + падежи + телефоны</text>
+<rect x="40" y="753.0" width="240" height="63" rx="10" fill="#E7F5EC" stroke="#2E8B57" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="40" y="763.0" width="4" height="43" rx="2" fill="#2E8B57"/>
+<text x="56" y="779.0" font-size="15" font-weight="700" fill="#1E5E3A">Псевдо-куски</text>
+<text x="56" y="799.0" font-size="12.5" fill="#4B5563">[[DV:PER:k3f9ab]]</text>
+<rect x="680" y="753.0" width="240" height="63" rx="10" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="680" y="763.0" width="4" height="43" rx="2" fill="#2A8C99"/>
+<text x="696" y="779.0" font-size="15" font-weight="700" fill="#16616B">Эмбеддинги</text>
+<text x="696" y="799.0" font-size="12.5" fill="#4B5563">bge-m3 по псевдо-тексту</text>
+<rect x="40" y="878" width="16" height="16" rx="4" fill="#F3F4F6" stroke="#8A93A0" stroke-width="1.5"/>
+<text x="64" y="891" font-size="12.5" fill="#4B5563">данные</text>
+<rect x="134.0" y="878" width="16" height="16" rx="4" fill="#E8F0FB" stroke="#2F5D9A" stroke-width="1.5"/>
+<text x="158.0" y="891" font-size="12.5" fill="#4B5563">шаг</text>
+<rect x="207.0" y="878" width="16" height="16" rx="4" fill="#E6F6F7" stroke="#2A8C99" stroke-width="1.5"/>
+<text x="231.0" y="891" font-size="12.5" fill="#4B5563">локальная LLM</text>
+<rect x="350.0" y="878" width="16" height="16" rx="4" fill="#F1EDFB" stroke="#7A5AC8" stroke-width="1.5"/>
+<text x="374.0" y="891" font-size="12.5" fill="#4B5563">правила</text>
+<rect x="451.0" y="878" width="16" height="16" rx="4" fill="#E7F5EC" stroke="#2E8B57" stroke-width="1.5"/>
+<text x="475.0" y="891" font-size="12.5" fill="#4B5563">результат</text>
+</svg>
